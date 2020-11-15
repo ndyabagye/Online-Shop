@@ -34,7 +34,7 @@
     <li class="nav-link mr">
        <b> ${uname }</b>
       </li>
-      <form action="Logout">
+      <form action="logout">
 		<input type="submit" class="btn btn-primary" value="Logout">
 	</form>
 </nav><br><br>

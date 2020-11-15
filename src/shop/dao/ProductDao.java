@@ -14,7 +14,7 @@ public class ProductDao {
 
 	// create a product
 	public int createProduct(Product product) throws ClassNotFoundException {
-		String INSERT_PRODUCT = "INSERT INTO products" + "(productName,cost)VALUES" + "(?,?,?)";
+		String INSERT_PRODUCT = "INSERT INTO products" + "(productName,cost,description)VALUES" + "(?,?,?)";
 		Class.forName("com.mysql.jdbc.Driver");
 		int result = 0;
 		try {

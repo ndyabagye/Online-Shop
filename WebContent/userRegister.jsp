@@ -32,6 +32,7 @@
 	   			<input type="password" class="form-control col-sm-6" name="password" placeholder="Enter password">
 	  		</div>
 				<input type="submit" class="btn btn-primary" value="Sign Up"/>
+				<span class="text-muted">Already have an account? <a href="userLogin">Sign In!</a></span>
 			</form>
 			<br><br>
 		</div>

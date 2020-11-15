@@ -24,9 +24,11 @@
 	   			<input type="password" class="form-control col-sm-6" name="password" placeholder="Enter password">
 	  		</div>
 				<input type="submit" class="btn btn-primary" value="Sign in "/>
+				<span class="text-muted">Don't have an account? <a href="userRegister">Register here</a></span>
 			</form>
 			<br><br>
 			<a class="btn btn-danger" href="adminLogin">Sign in  as Admin</a>
+			
 		</div>
 		</div>
 	</div>
