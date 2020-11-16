@@ -5,7 +5,7 @@
 <head>
 <meta charset="ISO-8859-1">
 <link rel="stylesheet" href="views/bootstrap.min.css" >
-<title>Insert title here</title>
+<title>User Registration Page</title>
 </head>
 <body class="text-center">
 	<div align="center" style="padding-top: 100px;">
