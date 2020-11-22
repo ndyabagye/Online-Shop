@@ -19,9 +19,12 @@
       <li class="nav-item active">
         <a class="nav-link" href="welcomePage.jsp">Home <span class="sr-only">(current)</span></a>
       </li>
+      
+      <c:if test="${adminToken==null }">
       <li class="nav-item">
-        <a class="nav-link" href="#">View Cart</a>
+        <a class="nav-link" href="cart.jsp">View Cart</a>
       </li>
+      </c:if>
       
       <c:if test="${adminToken!=null }">
       <li class="nav-item">

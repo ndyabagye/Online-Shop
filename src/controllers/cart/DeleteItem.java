@@ -1,7 +1,6 @@
 package controllers.cart;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 
 import javax.servlet.ServletException;
@@ -11,47 +10,51 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-
 import shop.models.Cart;
 
-
 /**
- * Servlet implementation class CreateCart
+ * Servlet implementation class DeleteItem
  */
-//@WebServlet("/createCart")
-public class CreateCart extends HttpServlet {
+//@WebServlet("/deleteItem")
+public class DeleteItem extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	  
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public DeleteItem() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
 	@SuppressWarnings("unchecked")
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int id = Integer.parseInt(request.getParameter("prodId"));
-		int quantity = Integer.parseInt(request.getParameter("quantity"));
-		int cost = Integer.parseInt(request.getParameter("prodCost"));
-		String name = request.getParameter("prodName");
-	
-		int totalCost = quantity*cost;
+		int prodQuantity = Integer.parseInt(request.getParameter("cartQuantity"));
+		int prodId = Integer.parseInt(request.getParameter("cartId"));
 		
 		HttpSession session = request.getSession();
-		
+		//get the cart already in session
 		ArrayList<Cart> cart = (ArrayList<Cart>)session.getAttribute("cart");
 		
-		if(cart == null) {
-			cart =  new ArrayList<Cart>();
-		}
-	
-		cart.add(new Cart(id,name,quantity, cost,totalCost));
-		int GrandTotal = 0;
-		//loop through and sum totalCost
+		//loop through and delete the item with the id and quantity
 		for(int i = 0; i<cart.size(); i++) {
-				GrandTotal = GrandTotal + cart.get(i).totalCost;
+			if(prodId == cart.get(i).productId && prodQuantity == cart.get(i).getQuantity()) {
+				cart.remove(i);
 			}
-	
-		//set cart
-		session.setAttribute("cart", cart);
-		//set GrandTotal
+		}
+		
+		//loop through new cart and sum totalCost
+		int GrandTotal =0;
+		for(int i = 0; i<cart.size(); i++) {
+			GrandTotal = GrandTotal + cart.get(i).totalCost;
+		}
+		
 		session.setAttribute("GrandTotal", GrandTotal);
-
-		response.sendRedirect("welcomePage.jsp");	
+		response.sendRedirect("cart.jsp");
+		
 	}
 
 	/**

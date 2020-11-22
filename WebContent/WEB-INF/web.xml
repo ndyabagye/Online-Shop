@@ -87,5 +87,21 @@
 		<servlet-name>productDetails</servlet-name>
 		<url-pattern>/productDetails</url-pattern>
 	</servlet-mapping>
+	<servlet>
+		<servlet-name>cart</servlet-name>
+		<servlet-class>controllers.cart.CreateCart</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>cart</servlet-name>
+		<url-pattern>/addToCart</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>cartDelete</servlet-name>
+		<servlet-class>controllers.cart.DeleteItem</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>cartDelete</servlet-name>
+		<url-pattern>/deleteItem</url-pattern>
+	</servlet-mapping>
 	
 </web-app>

@@ -38,9 +38,14 @@
 </div>
 
 <form action="addToCart">
-				<input type="hidden" value="${prodId }" name="id"/>
+<label for="quantity">Quantity</label>
+				<input type="hidden" value="${prodId}" name="prodId"/>
+				<input type="hidden" value="${productName}" name="prodName"/>
+				<input type="hidden" value="${cost}" name="prodCost"/>
+				<input type="text" class="form-control col-md-4 mb-4"
+				placeholder="Enter Quantity" min="1" max="100" required name="quantity"/>
 				<input type="submit" class="btn btn-primary"value="Add To Cart"/>
-			</form>
+	</form>
 </div>
 </body>
 </html>

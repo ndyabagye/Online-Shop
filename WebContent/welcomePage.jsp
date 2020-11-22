@@ -7,10 +7,11 @@
 <head>
 <meta charset="ISO-8859-1">
 <link rel="stylesheet" href="views/bootstrap.min.css" >
+<link rel="stylesheet" href="views/styles.css" >
 <title>Online Shop Welcome</title>
 </head>
 <body>
-<div align="center">
+<div class="grid-container text-center">
 <%response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); //HTTP 1.1
 	
 	response.setHeader("Pragma","no-cache");  //HTTP 1.0
@@ -22,7 +23,7 @@
 	}
 	%>
 	<%@include file="header.jsp" %>
-	Welcome to online shop ${uname }
+	<h5>Welcome to online shop ${uname }</h5>
 	
 	<sql:setDataSource var="db" driver="com.mysql.jdbc.Driver" url="jdbc:mysql://localhost/onlineshop"
 		user="root" password=""/>
@@ -30,58 +31,54 @@
 		select * from products
 	</sql:query>
 	
-	<div class="col-lg-10">
-	
-<table class="table table-hover table-responsive-lg">
-  <thead class="thead-dark">
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">Product Name</th>
-      <th scope="col">Product Cost</th>
-      <th scope="col">Action</th>
-      <th scope="col">Action</th>
-    </tr>
-  </thead>
-  <tbody>
-  <c:forEach items="${rs.rows }" var="prod">
-    <tr>
-      <th scope="row">${prod.id }</th>
-      <td>${prod.productName }</td>
-      <td>${prod.cost }</td>
-      <td><c:if test="${adminToken==null}">
-			<form action="addToCart">
+	<section class="container">
+    <div class="row">
+        <c:forEach items="${rs.rows}" var="prod">
+            <div class="col-sm-6 col-md-3" style="padding-bottom: 25px">
+             <img src="views/shop-item.svg" class="product-image"/>
+                <div class="thumbnail">
+                    <div class="caption">
+                        <h3>${prod.productName}</h3>
+                        <p>UGX ${prod.cost}</p>
+                        <p class="desc">UGX ${prod.description}</p>
+                        <div class="buttons">
+    <c:if test="${adminToken==null}">
+			<form action="productDetails" class="mx-auto">
 				<input type="hidden" value="${prod.id}" name="id"/>
-				<input type="submit" value="Add To Cart"/>
+				<input type="submit" class="btn btn-primary" value="Add To Cart"/>
 			</form>
 			</c:if>
 			<c:if test="${adminToken!=null}">
-			<form action="productUpdate">
-				<input type="hidden" class="btn btn-primary" value="${prod.id}" name="id"/>
-				<input type="submit" value="Update"/>
+			<form action="productUpdate" class="mx-auto">
+				<input type="hidden"  value="${prod.id}" name="id"/>
+				<input type="submit"class="btn btn-success" value="Update"/>
 			</form>
 			</c:if>
-		</td>
-		<td>
-		<c:if test="${adminToken!=null}">
-			<form action="productDelete">
-				<input type="hidden" class="btn btn-danger" value="${prod.id}" name="id"/>
-				<input type="submit" value="Delete"/>
+    			<c:if test="${adminToken!=null}">
+			<form action="productDelete" class="mr-6">
+				<input type="hidden" value="${prod.id}" name="id"/>
+				<input type="submit" class="btn btn-danger" value="Delete"/>
 			</form>
 			</c:if>
 			<c:if test="${adminToken==null}">
-			<form action="productDetails">
-				<input type="hidden" class="btn btn-primary" value="${prod.id}" name="id"/>
-				<input type="submit" value="View Details"/>
+			<form action="productDetails" class="mr-6">
+				<input type="hidden" value="${prod.id}" name="id"/>
+				<input type="submit" class="btn btn-success" value="View Details"/>
 			</form>
 			</c:if>
-		</td>
-    </tr>
-    </c:forEach>
-  </tbody>
-</table>
-	</div>
+    </div>
+                    </div>
+                </div>
+            </div>
+        </c:forEach>
+    </div>
+</section>
 
-
+	
+	
+	
 	</div>
+	
+	
 </body>
 </html>
