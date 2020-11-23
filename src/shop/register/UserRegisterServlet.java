@@ -1,6 +1,8 @@
 package shop.register;
 
 import java.io.IOException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -43,7 +45,10 @@ public class UserRegisterServlet extends HttpServlet {
 		String fullname = request.getParameter("fullname");
 		String email = request.getParameter("email");
 		String phone = request.getParameter("phone");
-		String password = request.getParameter("password");
+		String password1 = request.getParameter("password");
+		byte[] salt = getSalt();
+		//encrypt the password
+		String password = get_SHA_1_SecurePassword(password1, salt);
 		
 		//set user variables from user object
 		User user = new User();
@@ -64,6 +69,28 @@ public class UserRegisterServlet extends HttpServlet {
 		session.setAttribute("uname", fullname);
 		
 		response.sendRedirect("welcomePage.jsp");
+	}
+	
+	public byte[] getSalt() {
+		byte[] salt = new byte[8];
+		return salt;
+	}
+	
+	public static String get_SHA_1_SecurePassword(String passwordToHash, byte[] salt) {
+		String generatedPassword = null;
+		try {
+			MessageDigest md = MessageDigest.getInstance("SHA-1");
+			md.update(salt);
+			byte[] bytes = md.digest(passwordToHash.getBytes());
+			StringBuilder sb = new StringBuilder();
+			for(int i = 0; i < bytes.length; i++) {
+				sb.append(Integer.toString((bytes[i] & 0xff) + 0x100, 16).substring(1));
+				generatedPassword = sb.toString();
+			}
+		}catch(NoSuchAlgorithmException e) {
+			e.printStackTrace();
+		}
+		return generatedPassword;
 	}
 
 }

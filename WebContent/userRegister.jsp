@@ -21,7 +21,7 @@
 	  		</div>
 	  		<div class="form-group">
 	    		<label for="email">Email Address</label>
-	   			<input type="email" class="form-control col-md-6" name="fullname" placeholder="Enter your email">
+	   			<input type="email" class="form-control col-md-6" name="email" placeholder="Enter your email">
 	  		</div>
 	  		<div class="form-group">
 	    		<label for="phone">Phone Number</label>
