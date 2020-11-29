@@ -1,10 +1,11 @@
-package shop.models;
+	package shop.models;
 
 public class Product {
 	private String productName;
 	private int cost;
 	private int id;
 	private String description;
+	private String productImage;
 	
 	public int getId() {
 		return id;
@@ -29,6 +30,12 @@ public class Product {
 	}
 	public void setDescription(String description) {
 		this.description = description;
+	}
+	public String getProductImage() {
+		return productImage;
+	}
+	public void setProductImage(String productImage) {
+		this.productImage = productImage;
 	}
 	
 }	

@@ -14,7 +14,7 @@ public class ProductDao {
 
 	// create a product
 	public int createProduct(Product product) throws ClassNotFoundException {
-		String INSERT_PRODUCT = "INSERT INTO products" + "(productName,cost,description)VALUES" + "(?,?,?)";
+		String INSERT_PRODUCT = "INSERT INTO products" + "(productName,cost,description,productImage)VALUES" + "(?,?,?,?)";
 		Class.forName("com.mysql.jdbc.Driver");
 		int result = 0;
 		try {
@@ -25,6 +25,7 @@ public class ProductDao {
 			pst.setString(1, product.getProductName());
 			pst.setInt(2, product.getCost());
 			pst.setString(3, product.getDescription());
+			pst.setString(4, product.getProductImage());
 
 			// execute query
 			result = pst.executeUpdate();
@@ -45,6 +46,7 @@ public class ProductDao {
 			pst.setInt(2, product.getCost());
 			pst.setString(3, product.getDescription());
 			pst.setInt(4, product.getId());
+		
 			//execute query to update the product
 			result = pst.executeUpdate();
 		}catch(Exception e) {
@@ -84,6 +86,7 @@ public class ProductDao {
 				product.setProductName(rs.getString(2));
 				product.setCost(rs.getInt(3));
 				product.setDescription(rs.getString(4));
+				product.setProductImage(rs.getString(5));
 			}
 			
 		}catch(Exception e) {

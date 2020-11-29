@@ -29,10 +29,10 @@ public class UserLogin extends HttpServlet {
 	//check login data
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String uname = request.getParameter("fullname");
-		String upass1 = request.getParameter("password");
-		byte[] salt = getSalt();
+		String upass1 = request.getParameter("password"); //get password from user form
+		byte[] salt = getSalt(); //instantiate the encryption method
 		//get password and check encryption
-		String upass = get_SHA_1_SecurePassword(upass1, salt);
+		String upass = get_SHA_1_SecurePassword(upass1, salt); //pass the password and method as perimeters
 		UserDao dao = new UserDao();
 		
 		if(dao.checkLogin(uname, upass)) {
@@ -44,6 +44,7 @@ public class UserLogin extends HttpServlet {
 		}
 	}
 	
+	//this is the method that does the encryption
 	public byte[] getSalt() {
 		byte[] salt = new byte[8];
 		return salt;

@@ -25,7 +25,7 @@
 		<div class="card col-md-10">
 	  		<div class="card-body">
 	  		<h5 class="card-title ">Create New Product</h5>
-			<form action="productCreate" method="post">
+			<form action="productCreate" method="post" enctype="multipart/form-data">
 			<div class="form-group">
 	    		<label for="productName">Product Name</label>
 	   			<input type="text" class="form-control col-md-10" name="productName" placeholder="Enter name">
@@ -37,6 +37,11 @@
 	  		<div class="form-group">
 	    		<label for="description">Product Description</label>
 	   			<textarea class="form-control col-sm-10" rows="3" name="description" placeholder="Enter description"></textarea>
+	  		</div>
+	  		<div class="form-group">
+	    		<label for="image">Product Description</label>
+	    		<br>
+	   			<input type="file"  name="image" placeholder="Product Image">
 	  		</div>
 				<input type="submit" class="btn btn-primary" value="Create Product"/>
 			</form>

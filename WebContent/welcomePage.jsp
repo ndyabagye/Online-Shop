@@ -35,7 +35,12 @@
     <div class="row">
         <c:forEach items="${rs.rows}" var="prod">
             <div class="col-sm-6 col-md-3" style="padding-bottom: 25px">
+            <c:if test="${prod.productImage ==null}">
              <img src="views/shop-item.svg" class="product-image"/>
+             </c:if>
+             <c:if test="${ prod.productImage != null}">
+             <img src="Images/${prod.productImage }" class="product-image"/>
+             </c:if>
                 <div class="thumbnail">
                     <div class="caption">
                         <h3>${prod.productName}</h3>

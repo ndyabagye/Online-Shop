@@ -33,12 +33,14 @@ int id = Integer.parseInt(request.getParameter("id"));
 			String description = product.getDescription();
 			int cost = product.getCost();
 			int prodId = product.getId();
+			String prodImage = product.getProductImage();
 			
 			HttpSession session = request.getSession();
 			session.setAttribute("productName", productName);
 			session.setAttribute("cost", cost);
 			session.setAttribute("prodId", prodId);
 			session.setAttribute("description", description);
+			session.setAttribute("productImage", prodImage);
 			response.sendRedirect("productDetails.jsp");
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block

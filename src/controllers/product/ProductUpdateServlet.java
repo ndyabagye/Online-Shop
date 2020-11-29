@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
 import shop.dao.ProductDao;
 import shop.models.Product;
 
@@ -54,12 +53,14 @@ public class ProductUpdateServlet extends HttpServlet {
 		int cost = Integer.parseInt(request.getParameter("cost"));
 		int id = Integer.parseInt(request.getParameter("id"));
 		
+		
 		PrintWriter out = response.getWriter();
 		Product product = new Product();
 		product.setProductName(productName);
 		product.setDescription(description);
 		product.setCost(cost);
 		product.setId(id);
+		
 		try {
 			int status = productDao.updateProduct(product);
 			if(status>0) {
@@ -72,5 +73,7 @@ public class ProductUpdateServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 	}
+	
+	
 
 }

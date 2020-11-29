@@ -25,7 +25,12 @@
 	<div class="card mb-3" style="max-width: 540px;">
   <div class="row no-gutters">
     <div class="col-md-4">
-      <img src="views/shop-item.svg" class="card-img mt-3" alt="...">
+       <c:if test="${productImage ==null}">
+             <img src="views/shop-item.svg" class="card-img mt-3"/>
+             </c:if>
+             <c:if test="${productImage != null}">
+             <img src="Images/${productImage }" class="card-img mt"/>
+             </c:if>
     </div>
     <div class="col-md-8">
       <div class="card-body">
